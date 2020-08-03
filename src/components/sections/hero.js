@@ -183,7 +183,7 @@ const Hero = () => {
 
   const data = useStaticQuery(graphql`
     query {
-      file(relativePath: { eq: "hero.PNG" }) {
+      file(relativePath: { eq: "hero.png" }) {
         childImageSharp {
           fluid(fit: COVER) {
             ...GatsbyImageSharpFluid
