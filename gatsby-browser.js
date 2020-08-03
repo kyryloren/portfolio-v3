@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './src/components/layouts';
+import Layout from './src/components/Layouts';
 
 if (typeof window !== 'undefined') {
   // eslint-disable-next-line global-require
