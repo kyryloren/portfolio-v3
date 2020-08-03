@@ -14,9 +14,8 @@
   <a href="https://github.com/kyryloren/portfolio-v1" target="_blank">Version 1</a>
 </p>
 <p align="center">
-  <a href="https://app.netlify.com/sites/kyrylo-v2/deploys" target="_blank">
-    <img src="https://api.netlify.com/api/v1/badges/1ac3bde1-3734-42e0-bb97-d6a43b866500/deploy-status" alt="Netlify status" />
-    <a href="https://deepscan.io/dashboard#view=project&tid=9434&pid=12647&bid=197096"><img src="https://deepscan.io/api/teams/9434/projects/12647/branches/197096/badge/grade.svg" alt="DeepScan grade"></a>
+  <a href="https://app.netlify.com/sites/kyrylo-v3/deploys" target="_blank">
+    <img src="https://api.netlify.com/api/v1/badges/e98b92c3-645c-4dff-b533-68f516962dc8/deploy-status" alt="Netlify status" />
   </a>
 </p>
 
