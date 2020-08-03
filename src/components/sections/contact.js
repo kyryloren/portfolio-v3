@@ -128,6 +128,11 @@ const SocialLink = styled.a`
   margin-top: 2vw;
   font-size: calc(2400vw/var(--size));
   `};
+  ${media.tablet`
+  margin-top: 20px;
+  font-size: 18px;
+  `};
+  ${media.between`margin-right: 1rem;`};
 `;
 
 const Contact = () => {
@@ -136,14 +141,14 @@ const Contact = () => {
       <FooterItems>
         <LeftCol>
           <Headline>
-            That's enough of me.
+            That's enough of me,
             <br />
             Let's talk about you.
           </Headline>
         </LeftCol>
         <RightCol>
           <RowCol>
-            <Marquee>some more socials</Marquee>
+            <Marquee>more&nbsp;of&nbsp;me</Marquee>
             <Links>
               <Col>
                 <SocialLink
@@ -175,7 +180,7 @@ const Contact = () => {
             </Links>
           </RowCol>
           <RowCol>
-            <Marquee>say hi</Marquee>
+            <Marquee>say&nbsp;hi</Marquee>
             <FooterEmail
               href={`mailto:${email}?subject=Let's make something cool`}
               target="_blank"

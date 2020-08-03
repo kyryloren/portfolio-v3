@@ -12,12 +12,13 @@ const Wrapper = styled(Section)`
   padding-bottom: 12.055vw;
 
   ${media.tablet`padding: 0 9vw;`};
-  ${media.thone`padding: 0 5.4vw;`};
 `;
 const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 5.25vw;
+  margin-top: calc(2100vw / var(--size));
 
   ${media.bigDesktop`margin-top: 4rem;`}
 `;

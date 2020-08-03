@@ -111,10 +111,12 @@ const NavLogo = styled.div`
   color: var(--color-text);
   z-index: 99;
 
-  p {
+  a {
+    text-decoration: none;
     font-size: inherit;
     margin: 0;
     font-size: 100%;
+    color: var(--color-text);
   }
 `;
 const NavLinks = styled.ul`
@@ -181,7 +183,9 @@ class Nav extends Component {
       <StyledNav>
         <NavWrapper>
           <NavLogo>
-            <p>Kyrylo Orlov</p>
+            <Link to="/" state={{ shouldAnimate: false }}>
+              Kyrylo Orlov
+            </Link>
           </NavLogo>
           <StyledHamburger onClick={this.toggleMenu}>
             <StyledHamburgerBox>

@@ -7,7 +7,7 @@ import { email } from '@utils/config';
 // styles
 import styled from 'styled-components';
 import { media, Section } from '@styles';
-import { motion } from 'framer-motion';
+import { motion, useViewportScroll, useTransform } from 'framer-motion';
 
 import ScrollDown from '@images/scroll.svg';
 
@@ -54,12 +54,17 @@ const Underline = styled.span`
   text-decoration: underline;
   padding: 2px;
 `;
+const AvatarWrapper = styled(motion.div)`
+  right: calc(13500vw / var(--size));
+
+  ${media.bigDesktop`margin-top: 15vh;`};
+  ${media.tablet`margin-top: 0;`};
+`;
 const AvatarImage = styled(Img)`
   user-select: none;
   position: absolute !important;
   width: 25vw;
   z-index: 1;
-  right: calc(13500vw / var(--size));
 
   ${media.tablet`
   max-width: 280px;
@@ -144,7 +149,7 @@ const StyledLink = styled.a`
 
   ${media.tablet`font-size: 18px!important;`};
 `;
-const LinkInner = styled.div`
+const LinkInner = styled(motion.div)`
   position: relative;
 `;
 const LinkTextWrapper = styled.div`
@@ -178,9 +183,8 @@ const StyledScrollImage = styled(motion.img)`
   `};
 `;
 
-const Hero = () => {
+const Hero = ({ location }) => {
   const width = useWindowSize().width;
-
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "hero.png" }) {
@@ -196,7 +200,10 @@ const Hero = () => {
     before: { opacity: 0 },
     after: {
       opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 2.5 },
+      transition:
+        location.state === null
+          ? { staggerChildren: 0.3, delayChildren: 2.5 }
+          : { staggerChildren: 0.3 },
     },
   };
   const textVariants = {
@@ -211,11 +218,16 @@ const Hero = () => {
     },
   };
 
+  const { scrollY } = useViewportScroll();
+  const y1 = useTransform(scrollY, [0, 1500], [-300, 0]);
+  const y2 = useTransform(scrollY, [0, 1500], [0, -250]);
+
   return (
     <Wrapper>
       <Container>
         <Headline
           variants={containerVariants}
+          style={{ y: y2 }}
           initial={'before'}
           animate={'after'}
         >
@@ -243,10 +255,12 @@ const Hero = () => {
             </motion.div>
           )}
         </Headline>
-        <AvatarImage
-          fluid={data.file.childImageSharp.fluid}
-          alt="Kyrylo Orlov"
-        />
+        <AvatarWrapper style={{ y: y1 }}>
+          <AvatarImage
+            fluid={data.file.childImageSharp.fluid}
+            alt="Kyrylo Orlov"
+          />
+        </AvatarWrapper>
       </Container>
       <ContactCTA>
         <StyledLink
@@ -254,7 +268,7 @@ const Hero = () => {
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <LinkInner>
+          <LinkInner style={{ y: y2 }}>
             <LinkTextWrapper>
               <LinkText>dev@kyryloorlov.com</LinkText>
             </LinkTextWrapper>

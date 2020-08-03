@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { Main } from '@styles';
 import { Hero, About, Projects, Contact } from '@components/sections';
+import { Main } from '@styles';
 
 if (typeof window !== 'undefined') {
+  let Luxy = require('luxy.js');
+
   setTimeout(() => {
-    let Luxy = require('luxy.js');
     Luxy.init();
   }, 1000);
 }
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   return (
     <Main id="luxy">
-      <Hero />
+      <Hero location={location} />
       <About />
       <Projects />
       <Contact />

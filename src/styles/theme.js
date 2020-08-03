@@ -9,7 +9,7 @@ const theme = {
     darkMode: {
       text: '#ffffff',
       background: '#000000',
-      accent: '#fffcf2',
+      accent: '#faf5e3',
       primary: '#DD7373',
     },
   },

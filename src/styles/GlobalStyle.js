@@ -45,6 +45,11 @@ const GlobalStyle = createGlobalStyle`
     --color-primary: ${colors.lightMode.primary};
 
     background: var(--color-background);
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
   }
 
   body.dark {

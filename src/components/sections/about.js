@@ -38,6 +38,8 @@ const IntroShort = styled.p`
   margin-top: 0;
   line-height: 1.5;
   color: var(--color-text);
+  margin-top: 5.25vw;
+  margin-top: calc(2100vw / var(--size));
 
   ${media.bigDesktop`line-height: 1.6!important;`};
   ${media.between`
@@ -74,6 +76,8 @@ export const AccordionHeader = styled(motion.div)`
   font-family: var(--font-family);
   font-weight: 500;
   cursor: pointer;
+  margin-top: 5.25vw;
+  margin-top: calc(2100vw / var(--size));
 
   ${media.bigDesktop`line-height: 1.6!important;`};
   ${media.tablet`
@@ -156,7 +160,6 @@ const accordionIds = [
     ],
   },
 ];
-
 const Accordion = ({ details, expanded, setExpanded }) => {
   const isOpen = details.id === expanded;
   const [hovered, setHovered] = useState(false);
@@ -211,7 +214,7 @@ const About = () => {
         ))}
       </Services>
       <Intro>
-        <Marquee>quick info</Marquee>
+        <Marquee>about</Marquee>
         <IntroShort>
           I’m a designer and developer based in New York, NY. Currently working
           on freelance projects and updating my portfolio. I believe great
