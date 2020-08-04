@@ -219,8 +219,6 @@ const Hero = ({ location }) => {
     },
   };
 
-  console.log(width);
-
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 1500], [-300, 0]);
   const y2 = useTransform(scrollY, [0, 1500], [0, -250]);
