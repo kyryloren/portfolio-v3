@@ -144,6 +144,11 @@ const NavLink = styled(Link)`
   min-width: max-content;
   text-decoration: none;
   color: var(--color-text);
+  transition: all 0.3s ease;
+
+  :hover {
+    color: var(--color-primary);
+  }
 
   ${media.tablet`font-size: 18px!important;`};
 `;

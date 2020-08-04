@@ -66,7 +66,7 @@ const NavLink = styled(Link)`
   display: inline-block;
   text-decoration: none;
   font-family: var(--font-family-serif);
-  font-size: 39px;
+  font-size: 20px;
   color: var(--color-text);
   padding: 3px 20px 20px;
 

@@ -4,7 +4,7 @@ const theme = {
       text: '#000000',
       background: '#ffffff',
       accent: '#0d0d0d',
-      primary: '#DD7373',
+      primary: '#cf4646',
     },
     darkMode: {
       text: '#ffffff',
