@@ -1,4 +1,3 @@
-const path = require('path');
 const config = require('./src/utils/config');
 
 module.exports = {

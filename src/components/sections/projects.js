@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Img from 'gatsby-image';
-import { useStaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 import { useInView } from 'react-intersection-observer';
 
 // styles
 import styled from 'styled-components';
-import Marquee from '@components/marquee';
 import { media, Section } from '@styles';
+import Marquee from '@components/marquee';
 
 const Wrapper = styled(Section)`
   padding-bottom: 12.055vw;
@@ -21,6 +21,14 @@ const Row = styled.div`
   margin-top: calc(2100vw / var(--size));
 
   ${media.bigDesktop`margin-top: 4rem;`}
+`;
+const StyledImage = styled(Img)`
+  width: 100%;
+  height: 100%;
+
+  img {
+    transition: all 0.5s cubic-bezier(0.43, 0.13, 0.23, 0.96) !important;
+  }
 `;
 const Item = styled.a`
   max-width: 36.5vw;
@@ -45,6 +53,12 @@ const ImageWrap = styled.div`
   overflow: hidden;
   min-width: 36.5vw;
   margin: 0 auto;
+
+  :hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
 `;
 const ItemCaption = styled.div`
   margin: 0;
@@ -165,7 +179,7 @@ const ProjectIDs = [
       'An easy way to learn cyber security interactively all in your browser. Hackersent is setup with a complete authentication system, user roles, and an easy-to-navigate dashboard for managing your content.',
     github: 'https://github.com/hackersent/hackersent',
     external: 'https://hackersent-dev.netlify.app',
-    image: 'Hackersent',
+    link: 'hackersent',
   },
   {
     id: 1,
@@ -174,7 +188,7 @@ const ProjectIDs = [
       'A web app built for my high school allowing students to search for their favorite clubs and joined theme. Foundry is complete with a full authentication system, user roles, and a daily dashboard.',
     github: 'https://github.com/btechsu/Foundry/tree/development',
     external: 'https://foundry-dev.netlify.app/app/dashboard',
-    image: 'BTHS Foundry',
+    link: 'foundry',
   },
   {
     id: 2,
@@ -183,7 +197,7 @@ const ProjectIDs = [
       'A website I made for a client, Dynamo Fencing Center. The website was first made in plain HTML, CSS, and JS and later transformed into a React website. Uses bootstrap for base styling and layed on with a lot of custom CSS.',
     github: 'https://github.com/kyryloren/dynamo-fencing',
     external: 'https://dynamo-fencing.netlify.app',
-    image: 'Dynamo Fencing',
+    link: 'dynamo-fencing',
   },
   {
     id: 3,
@@ -191,14 +205,56 @@ const ProjectIDs = [
     text:
       'An easy tool used to generate peristent backdoors to get remote access to a Windows machine. It creates malware with custom coded encrypted payloads that have a high ability to bypass most present-day antivirus detection.',
     github: 'https://github.com/kyryloren/cheesyrat',
-    image: 'Cheesyrat',
+    link: 'cheesyrat',
   },
 ];
+
+const Project = ({ children, name, description, github, external }) => {
+  return (
+    <>
+      <ImageWrap>{children}</ImageWrap>
+      <ItemCaption>
+        <CaptionTitle>{name}</CaptionTitle>
+        <CaptionSubtitle>{description}</CaptionSubtitle>
+        <Links>
+          {github && (
+            <StyledLink
+              href={github}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            >
+              <LinkInner>
+                <LinkTextWrapper>
+                  <LinkText>View GitHub</LinkText>
+                </LinkTextWrapper>
+                <LinkLine />
+              </LinkInner>
+            </StyledLink>
+          )}
+          {external && (
+            <StyledLink
+              href={external}
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+            >
+              <LinkInner>
+                <LinkTextWrapper>
+                  <LinkText>View Project</LinkText>
+                </LinkTextWrapper>
+                <LinkLine />
+              </LinkInner>
+            </StyledLink>
+          )}
+        </Links>
+      </ItemCaption>
+    </>
+  );
+};
 
 const Projects = () => {
   const [projectsRef, inView] = useInView({
     triggerOnce: false,
-    rootMargin: '-100px',
+    rootMargin: '-150px',
   });
   useEffect(() => {
     if (inView) {
@@ -207,118 +263,106 @@ const Projects = () => {
       document.body.classList.toggle('dark', false);
     }
   }, [inView]);
-  const data = useStaticQuery(graphql`
-    query {
-      hackersent: file(relativePath: { eq: "projects/hackersent.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      dynamoFencing: file(relativePath: { eq: "projects/dynamoFencing.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      foundry: file(relativePath: { eq: "projects/foundry.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      cheesyrat: file(relativePath: { eq: "projects/cheesyrat.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 700, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
 
   return (
-    <Wrapper ref={projectsRef} id="projects">
-      <Marquee>projects</Marquee>
-      <Row>
-        {ProjectIDs.map((details, i) => (
-          <Item
-            key={i}
-            href={
-              details.external
-                ? details.external
-                : details.github
-                ? details.github
-                : '#'
+    <StaticQuery
+      query={graphql`
+        query {
+          hackersent: file(relativePath: { eq: "projects/hackersent.png" }) {
+            childImageSharp {
+              fluid(maxWidth: 700, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
             }
-          >
-            <ImageWrap>
-              {i === 0 && (
-                <Img
-                  fluid={data.hackersent.childImageSharp.fluid}
-                  alt={details.name}
-                />
-              )}
-              {i === 1 && (
-                <Img
-                  fluid={data.foundry.childImageSharp.fluid}
-                  alt={details.name}
-                />
-              )}
-              {i === 2 && (
-                <Img
-                  fluid={data.dynamoFencing.childImageSharp.fluid}
-                  alt={details.name}
-                />
-              )}
-              {i === 3 && (
-                <Img
-                  fluid={data.cheesyrat.childImageSharp.fluid}
-                  alt={details.name}
-                />
-              )}
-            </ImageWrap>
-            <ItemCaption>
-              <CaptionTitle>{details.name}</CaptionTitle>
-              <CaptionSubtitle>{details.text}</CaptionSubtitle>
-              <Links>
-                {details.github && (
-                  <StyledLink
-                    href={details.github}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
+          }
+          dynamoFencing: file(
+            relativePath: { eq: "projects/dynamoFencing.png" }
+          ) {
+            childImageSharp {
+              fluid(maxWidth: 700, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          foundry: file(relativePath: { eq: "projects/foundry.png" }) {
+            childImageSharp {
+              fluid(maxWidth: 700, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          cheesyrat: file(relativePath: { eq: "projects/cheesyrat.png" }) {
+            childImageSharp {
+              fluid(maxWidth: 700, quality: 90) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      `}
+      render={(data) => {
+        const hackersent = data.hackersent.childImageSharp.fluid;
+        const dynamoFencing = data.dynamoFencing.childImageSharp.fluid;
+        const foundry = data.foundry.childImageSharp.fluid;
+        const cheesyrat = data.cheesyrat.childImageSharp.fluid;
+
+        return (
+          <Wrapper ref={projectsRef} id="projects">
+            <Marquee>projects</Marquee>
+            <Row>
+              {ProjectIDs.map((details, i) => (
+                <Item
+                  Item
+                  href={
+                    details.external
+                      ? details.external
+                      : details.github
+                      ? details.github
+                      : '#'
+                  }
+                >
+                  <Project
+                    name={details.name}
+                    description={details.text}
+                    github={details.github}
+                    external={details.external}
                   >
-                    <LinkInner>
-                      <LinkTextWrapper>
-                        <LinkText>View GitHub</LinkText>
-                      </LinkTextWrapper>
-                      <LinkLine />
-                    </LinkInner>
-                  </StyledLink>
-                )}
-                {details.external && (
-                  <StyledLink
-                    href={details.external}
-                    target="_blank"
-                    rel="nofollow noopener noreferrer"
-                  >
-                    <LinkInner>
-                      <LinkTextWrapper>
-                        <LinkText>View Project</LinkText>
-                      </LinkTextWrapper>
-                      <LinkLine />
-                    </LinkInner>
-                  </StyledLink>
-                )}
-              </Links>
-            </ItemCaption>
-          </Item>
-        ))}
-      </Row>
-    </Wrapper>
+                    {i === 0 && (
+                      <StyledImage
+                        fluid={hackersent}
+                        alt={details.name}
+                        objectFit="cover"
+                      />
+                    )}
+                    {i === 1 && (
+                      <StyledImage
+                        fluid={foundry}
+                        alt={details.name}
+                        objectFit="cover"
+                      />
+                    )}
+                    {i === 2 && (
+                      <StyledImage
+                        fluid={dynamoFencing}
+                        alt={details.name}
+                        objectFit="cover"
+                      />
+                    )}
+                    {i === 3 && (
+                      <StyledImage
+                        fluid={cheesyrat}
+                        alt={details.name}
+                        objectFit="cover"
+                      />
+                    )}
+                  </Project>
+                </Item>
+              ))}
+            </Row>
+          </Wrapper>
+        );
+      }}
+    />
   );
 };
 

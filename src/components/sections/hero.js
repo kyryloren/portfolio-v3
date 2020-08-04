@@ -1,5 +1,6 @@
 import React from 'react';
 import useWindowSize from '../_useWindowSize';
+import useMousePosition from '../_useMousePosition';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { email } from '@utils/config';
@@ -186,6 +187,7 @@ const StyledScrollImage = styled(motion.img)`
 
 const Hero = ({ location }) => {
   const width = useWindowSize().width;
+  const { x, y } = useMousePosition();
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "hero.png" }) {
@@ -221,7 +223,6 @@ const Hero = ({ location }) => {
 
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 1500], [-300, 0]);
-  const y2 = useTransform(scrollY, [0, 1500], [0, -250]);
   const y3 = useTransform(scrollY, [0, 1500], [-350, -100]);
 
   return (
@@ -229,7 +230,7 @@ const Hero = ({ location }) => {
       <Container>
         <Headline
           variants={containerVariants}
-          style={{ y: y2 }}
+          style={{ y: y / 100, x: x / 100 }}
           initial={'before'}
           animate={'after'}
         >
@@ -270,7 +271,7 @@ const Hero = ({ location }) => {
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <LinkInner style={{ y: y2 }}>
+          <LinkInner style={{ y: y / 100, x: x / 100 }}>
             <LinkTextWrapper>
               <LinkText>dev@kyryloorlov.com</LinkText>
             </LinkTextWrapper>
