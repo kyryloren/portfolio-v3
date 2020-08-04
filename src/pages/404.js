@@ -33,7 +33,7 @@ const StyledSubtitle = styled.h2`
 
 const ErrorPage = () => {
   return (
-    <StyledWrapper id="luxy">
+    <StyledWrapper>
       <Marquee>error</Marquee>
       <LargeTitle>404</LargeTitle>
       <StyledSubtitle>Page not found</StyledSubtitle>

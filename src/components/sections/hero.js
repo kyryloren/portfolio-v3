@@ -56,6 +56,7 @@ const Underline = styled.span`
 `;
 const AvatarWrapper = styled(motion.div)`
   right: calc(13500vw / var(--size));
+  display: flex;
 
   ${media.bigDesktop`margin-top: 15vh;`};
   ${media.tablet`margin-top: 0;`};
@@ -218,9 +219,12 @@ const Hero = ({ location }) => {
     },
   };
 
+  console.log(width);
+
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 1500], [-300, 0]);
   const y2 = useTransform(scrollY, [0, 1500], [0, -250]);
+  const y3 = useTransform(scrollY, [0, 1500], [-350, -100]);
 
   return (
     <Wrapper>
@@ -255,7 +259,7 @@ const Hero = ({ location }) => {
             </motion.div>
           )}
         </Headline>
-        <AvatarWrapper style={{ y: y1 }}>
+        <AvatarWrapper style={width <= 2200 ? { y: y1 } : { y: y3 }}>
           <AvatarImage
             fluid={data.file.childImageSharp.fluid}
             alt="Kyrylo Orlov"
