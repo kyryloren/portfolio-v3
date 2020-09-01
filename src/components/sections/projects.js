@@ -179,7 +179,6 @@ const ProjectIDs = [
       'An easy way to learn cyber security interactively all from your browser. Hackersent is setup with a complete authentication system, user roles, and an easy-to-navigate dashboard for managing your content.',
     github: 'https://github.com/hackersent/hackersent',
     external: 'https://hackersent-dev.netlify.app',
-    link: 'hackersent',
   },
   {
     id: 1,
@@ -187,17 +186,14 @@ const ProjectIDs = [
     text:
       'A web app built for my high school allowing students to search for their favorite clubs and join them. Foundry is complete with a full authentication system, user roles, and a custom dashboard.',
     github: 'https://github.com/btechsu/Foundry/tree/development',
-    external: 'https://foundry-dev.netlify.app/app/dashboard',
-    link: 'foundry',
+    external: 'https://foundry-dev.netlify.app',
   },
   {
     id: 2,
     name: 'Dynamo Fencing',
     text:
       'A website I made for a client, Dynamo Fencing Center. The website was first made in plain HTML, CSS, and JS and later transformed into a React website. It uses bootstrap for the base styling and then layed on with a lot of custom CSS.',
-    github: 'https://github.com/kyryloren/dynamo-fencing',
-    external: 'https://dynamo-fencing.netlify.app',
-    link: 'dynamo-fencing',
+    external: 'https://dynamo-fencing.com',
   },
   {
     id: 3,
@@ -205,7 +201,6 @@ const ProjectIDs = [
     text:
       'An easy tool used to generate peristent backdoors to get remote access to a Windows machine. It creates malware with custom coded, encrypted payloads that have a high ability to bypass most present-day antivirus detection.',
     github: 'https://github.com/kyryloren/cheesyrat',
-    link: 'cheesyrat',
   },
 ];
 
