@@ -315,6 +315,8 @@ const Projects = () => {
                       ? details.github
                       : '#'
                   }
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
                 >
                   <Project
                     name={details.name}

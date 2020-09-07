@@ -2,7 +2,7 @@
   "name": "kyrylo-orlov",
   "private": true,
   "description": "I'm a professional developer based in New York, focused on front end design and cybersecurity.",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Kyrylo Orlov <dev@kyryloorlov.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.11.1",
