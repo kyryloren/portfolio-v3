@@ -192,7 +192,7 @@ const ProjectIDs = [
     id: 2,
     name: 'Dynamo Fencing',
     text:
-      'A website I made for a client, Dynamo Fencing Center. The website was first made in plain HTML, CSS, and JS and later transformed into a React website. It uses bootstrap for the base styling and then layed on with a lot of custom CSS.',
+      'A website I made for a client, Dynamo Fencing Center. It was first written in plain HTML, CSS, and JS and then later re-designed to be a Javascript website built with Gatsby and hosted with AWS.',
     external: 'https://dynamo-fencing.com',
   },
   {
