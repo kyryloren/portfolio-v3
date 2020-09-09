@@ -226,7 +226,7 @@ const About = () => {
           strived to educate myself on how things work and why they do. At a
           young age I taught myself how to code and never had a reason to stop.
           I love everything to do with development & visual design as well as
-          delivering extraordinary creative solutions across digital platforms
+          delivering extraordinarily creative solutions across digital platforms
           and beyond.
         </IntroLong>
       </Intro>
