@@ -199,7 +199,7 @@ const ProjectIDs = [
     id: 3,
     name: 'Cheesyrat',
     text:
-      'An easy tool used to generate peristent backdoors to get remote access to a Windows machine. It creates malware with custom coded, encrypted payloads that have a high ability to bypass most present-day antivirus detection.',
+      'An easy tool used to generate persistent backdoors to get remote access to a Windows machine. It creates malware with custom coded, encrypted payloads that have a high ability to bypass most present-day antivirus detection.',
     github: 'https://github.com/kyryloren/cheesyrat',
   },
 ];
