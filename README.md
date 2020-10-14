@@ -11,7 +11,7 @@
 </p>
 <p align="center">
   Previous versions:
-  <a href="https://github.com/kyryloren/portfolio-v1" target="_blank">Version 1</a>
+  <a href="https://github.com/kyryloren/portfolio-v2" target="_blank">Version 2</a>
 </p>
 <p align="center">
   <a href="https://app.netlify.com/sites/kyrylo-v3/deploys" target="_blank">
