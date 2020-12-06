@@ -43,7 +43,6 @@ const Headline = styled(motion.h1)`
   `};
   ${media.thone`
     max-width: 100%;
-    margin-top: -40vh;
     font-size: 31px;
   `};
 `;
@@ -202,7 +201,7 @@ const Hero = () => {
 
   const { scrollY } = useViewportScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 100]);
-  const y3 = useTransform(scrollY, [0, 1500], [-350, -100]);
+  const y3 = useTransform(scrollY, [0, 1000], [100, 0]);
 
   return (
     <Wrapper>
