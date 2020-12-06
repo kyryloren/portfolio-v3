@@ -1,6 +1,5 @@
 import React from 'react';
 import useWindowSize from '../_useWindowSize';
-import useMousePosition from '../_useMousePosition';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { email } from '@utils/config';
