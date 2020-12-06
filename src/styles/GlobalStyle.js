@@ -45,11 +45,7 @@ const GlobalStyle = createGlobalStyle`
     --color-primary: ${colors.lightMode.primary};
 
     background: var(--color-background);
-
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    scrollbar-width: none;
+    overscroll-behavior-y: none;
   }
 
   body.dark {
