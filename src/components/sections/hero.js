@@ -36,15 +36,20 @@ const Headline = styled(motion.h1)`
   color: var(--color-text);
 
   ${media.tablet`
-  max-width: 100%;
-  margin-top: -20vh;
-  font-size: 40px;
-  line-height: 1.4;
+    position: absolute;
+    max-width: 60%;
+    margin-top: -25vh;
+    font-size: 40px;
+    line-height: 1.4;
   `};
   ${media.thone`
-  margin-top: -25vh;
-  font-size: 31px;
+    max-width: 100%;
+    margin-top: -40vh;
+    font-size: 31px;
   `};
+`;
+const TextWrapper = styled.div`
+  overflow: hidden;
 `;
 const LineText = styled(motion.div)`
   overflow: hidden;
@@ -56,27 +61,24 @@ const Underline = styled.span`
   padding: 2px;
 `;
 const AvatarWrapper = styled(motion.div)`
-  right: calc(13500vw / var(--size));
-  display: flex;
-
-  ${media.bigDesktop`margin-top: 15vh;`};
-  ${media.tablet`margin-top: 0;`};
-`;
-const AvatarImage = styled(Img)`
-  user-select: none;
-  position: absolute !important;
-  width: 25vw;
   z-index: 1;
 
   ${media.tablet`
-  max-width: 280px;
-  width: 40vw;
-  min-width: 185px;
-  z-index: 1;
-  right: 9vw;
-  margin-top: 20vh;
+    position: absolute;
+    top: 40vh;
+    right: 5.4vw;
   `};
-  ${media.thone`right: 5.4vw;`};
+  ${media.thone`top: 40vh;`};
+  ${media.phablet`top: 45vh;`};
+`;
+const AvatarImage = styled(Img)`
+  width: 25vw;
+  z-index: 1;
+
+  ${media.tablet`width: 30vw;`};
+  ${media.between`width: 35vw;`};
+  ${media.thone`width: 45vw;`};
+  ${media.phablet`width: 55vw;`};
 `;
 const ContactCTA = styled.div`
   position: absolute;
@@ -185,77 +187,92 @@ const StyledScrollImage = styled(motion.img)`
   `};
 `;
 
-const Hero = ({ location }) => {
+const Hero = () => {
   const width = useWindowSize().width;
-  const { x, y } = useMousePosition();
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "hero.png" }) {
         childImageSharp {
-          fluid(fit: COVER) {
+          fluid(fit: COVER, maxWidth: 500, quality: 40) {
             ...GatsbyImageSharpFluid
           }
         }
       }
     }
   `);
-  const containerVariants = {
-    before: { opacity: 0 },
-    after: {
-      opacity: 1,
-      transition:
-        location.state === null
-          ? { staggerChildren: 0.3, delayChildren: 2.5 }
-          : { staggerChildren: 0.3 },
-    },
-  };
-  const textVariants = {
-    before: {
-      y: -26 * 2,
-      opacity: 0,
-    },
-    after: {
-      y: 0,
-      opacity: 1,
-      transition: { ease: [0.6, 0.05, -0.01, 0.9], duration: 2 },
-    },
-  };
 
   const { scrollY } = useViewportScroll();
-  const y1 = useTransform(scrollY, [0, 1500], [-300, 0]);
+  const y1 = useTransform(scrollY, [0, 1000], [0, 100]);
   const y3 = useTransform(scrollY, [0, 1500], [-350, -100]);
 
   return (
     <Wrapper>
       <Container>
-        <Headline
-          variants={containerVariants}
-          style={{ y: y / 100, x: x / 100 }}
-          initial={'before'}
-          animate={'after'}
-        >
+        <Headline>
           {width > 860 ? (
             <>
-              <LineText variants={textVariants}>
-                Hey, I'm <Underline>Kyrylo</Underline>, UI/UX designer
-              </LineText>
-              <LineText variants={textVariants}>
-                and software engineer, focused on
-              </LineText>
-              <LineText variants={textVariants}>
-                crafting polished user experiences.
-              </LineText>
+              <TextWrapper>
+                <LineText
+                  initial={{ y: 200 }}
+                  animate={{
+                    y: 0,
+                    transition: {
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 1.5,
+                    },
+                  }}
+                >
+                  Hey, I'm <Underline>Kyrylo</Underline>, UI/UX designer
+                </LineText>
+              </TextWrapper>
+              <TextWrapper>
+                <LineText
+                  initial={{ y: 200 }}
+                  animate={{
+                    y: 0,
+                    transition: {
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 1.5,
+                      delay: 0.4,
+                    },
+                  }}
+                >
+                  and software engineer, focused on
+                </LineText>
+              </TextWrapper>
+              <TextWrapper>
+                <LineText
+                  initial={{ y: 200 }}
+                  animate={{
+                    y: 0,
+                    transition: {
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 1.5,
+                      delay: 0.8,
+                    },
+                  }}
+                >
+                  crafting polished user experiences.
+                </LineText>
+              </TextWrapper>
             </>
           ) : (
-            <motion.div
-              variants={textVariants}
-              initial={'before'}
-              animate={'after'}
-            >
-              Hey, I'm <Underline>Kyrylo</Underline>, UI/UX designer and
-              software engineer, focused on crafting exceptional user
-              experiences.
-            </motion.div>
+            <TextWrapper>
+              <motion.div
+                initial={{ y: 500 }}
+                animate={{
+                  y: 0,
+                  transition: {
+                    ease: [0.6, 0.05, -0.01, 0.9],
+                    duration: 1.5,
+                  },
+                }}
+              >
+                Hey, I'm <Underline>Kyrylo</Underline>, UI/UX designer and
+                software engineer, focused on crafting exceptional user
+                experiences.
+              </motion.div>
+            </TextWrapper>
           )}
         </Headline>
         <AvatarWrapper style={width <= 2200 ? { y: y1 } : { y: y3 }}>
@@ -271,9 +288,11 @@ const Hero = ({ location }) => {
           target="_blank"
           rel="nofollow noopener noreferrer"
         >
-          <LinkInner style={{ y: y / 100, x: x / 100 }}>
+          <LinkInner>
             <LinkTextWrapper>
-              <LinkText>dev@kyryloorlov.com</LinkText>
+              <TextWrapper>
+                <LinkText>dev@kyryloorlov.com</LinkText>
+              </TextWrapper>
             </LinkTextWrapper>
             <LinkLine />
           </LinkInner>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 
 //styles
+import { motion } from 'framer-motion';
 import { GlobalStyle } from '@styles';
 import ComeIn from '@components/_comeIn';
 
@@ -47,13 +48,15 @@ export default ({ children, location }) => {
         <>
           <Head metadata={site.site.siteMetadata} />
           <GlobalStyle />
+          <Nav />
 
           {isLoading && isHome ? (
             <ComeIn finishLoading={() => setIsLoading(false)} />
           ) : (
             <>
-              <Nav />
-              {children}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                {children}
+              </motion.div>
             </>
           )}
         </>

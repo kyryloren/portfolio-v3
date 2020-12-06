@@ -72,6 +72,12 @@ const GlobalStyle = createGlobalStyle`
   p {
     line-height: 160%;
   }
+
+  img {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+  }
 `;
 
 export default GlobalStyle;
