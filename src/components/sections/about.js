@@ -123,41 +123,36 @@ export const AccordionContent = styled(motion.div)`
 const accordionIds = [
   {
     id: 0,
-    title: 'Design',
-    results: [
-      'Concept and ideation',
-      'Prototyping',
-      'Sketches',
-      'Content creation',
-      'Reusable components',
-      'Animation',
+    title: 'Business Strategy',
+    text: [
+      "Come up with a successful plan while working closely with your team to set and achieve your organization's goals. We'll go through design strategies, advertising, and product management workshops so that your business grows organically.",
     ],
   },
   {
     id: 1,
-    title: 'Development',
-    results: [
-      'React',
-      'Node.js',
-      'Gatsby',
-      'Plain HTML/CSS/JS',
-      'Firebase',
-      'Python',
-    ],
+    title: 'Brand Identity',
+    text:
+      "Brand identity isn't just your logo or colors. By expressing your functional message, personality, beliefs, and goals, brand identity acts as a gateway to building a proper consumer base. When implemented correctly, your prospective buyers will understand how you differ from the market intuitively and seamlessly.",
   },
   {
     id: 2,
-    title: 'Production',
-    results: ['Continuous updates', 'Maintaining code', 'Instant support'],
+    title: 'UI/UX Design',
+    text: [
+      'Simulating and constructing the digital structure that illustrates the experience of your customer and resonates with it. Optimizing structure and flow so that it gives a smooth and flawless user experience.',
+    ],
   },
   {
     id: 3,
-    title: 'Security',
-    results: [
-      'Building/updating secure code',
-      'Penetration testing',
-      'Web vulnerability assessment',
+    title: 'Web Design',
+    text: [
+      'Your website is the frontpage of your business. It is crucial that your website tells the right story while simultaneously focusing on the usability and customer experience. I take on the design by communicating your brand identity and values to the user.',
     ],
+  },
+  {
+    id: 4,
+    title: 'Web Development',
+    text:
+      'Using modern tools and languages like React, I meticulously code out your design with present-day security standards and core concepts of the web. I also go through the painstaking of wiring your website to the world wide web.',
   },
 ];
 const Accordion = ({ details, expanded, setExpanded }) => {
@@ -189,9 +184,7 @@ const Accordion = ({ details, expanded, setExpanded }) => {
         animate={{ height: isOpen ? 'auto' : '0' }}
         transition={{ duration: 0.8, ease: [0.6, 0.05, -0.01, 0.9] }}
       >
-        {details.results.map((result, index) => (
-          <span key={index}>{result}</span>
-        ))}
+        <span>{details.text}</span>
       </AccordionContent>
     </>
   );
