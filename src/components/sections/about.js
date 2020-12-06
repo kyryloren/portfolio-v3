@@ -14,16 +14,17 @@ const Wrapper = styled(Section)`
   padding-bottom: 12.055vw;
   user-select: none;
 
+  ${media.tablet`padding-bottom: 10vw;`};
   ${media.between`
-  padding-top: 140px;
-  padding-bottom: 140px;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column-reverse;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column-reverse;
   `};
   ${media.phone`
-  padding-top: 120px;
-  padding-bottom: 100px;
+    padding-top: 120px;
+    padding-bottom: 100px;
   `};
 `;
 const Intro = styled.div`

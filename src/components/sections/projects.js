@@ -18,7 +18,6 @@ const Row = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 5.25vw;
-  margin-top: calc(2100vw / var(--size));
 
   ${media.bigDesktop`margin-top: 4rem;`}
 `;
@@ -73,13 +72,18 @@ const CaptionTitle = styled.p`
   font-size: calc(1500vw / var(--size));
   color: var(--color-text);
 
+  span {
+    opacity: 0.4;
+    font-size: 70%;
+  }
+
   ${media.bigDesktop`
-  margin-top: 2.25vw;
-  font-size: calc(1900vw/var(--size));
+    margin-top: 2.25vw;
+    font-size: calc(1900vw/var(--size));
   `};
   ${media.tablet`
-  margin-top: 28px;
-  font-size: 16px;
+    margin-top: 28px;
+    font-size: 16px;
   `};
 `;
 const CaptionSubtitle = styled.p`
@@ -127,6 +131,7 @@ const LinkLine = styled.div`
   }
 `;
 const Links = styled.div`
+  margin-top: 2rem;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -185,8 +190,8 @@ const ProjectIDs = [
     name: 'BTHS Foundry',
     text:
       'A web app built for my high school allowing students to search for their favorite clubs and join them. Foundry is complete with a full authentication system, user roles, and a custom dashboard.',
-    github: 'https://github.com/btechsu/Foundry/tree/development',
-    external: 'https://foundry-dev.netlify.app',
+    github: 'https://github.com/btechsu/Foundry/tree/production',
+    external: 'https://bths.live',
   },
   {
     id: 2,
@@ -204,12 +209,14 @@ const ProjectIDs = [
   },
 ];
 
-const Project = ({ children, name, description, github, external }) => {
+const Project = ({ children, name, description, github, external, wip }) => {
   return (
     <>
       <ImageWrap>{children}</ImageWrap>
       <ItemCaption>
-        <CaptionTitle>{name}</CaptionTitle>
+        <CaptionTitle>
+          {name} {wip && <span>(Work in progress)</span>}
+        </CaptionTitle>
         <CaptionSubtitle>{description}</CaptionSubtitle>
         <Links>
           {github && (
@@ -323,6 +330,7 @@ const Projects = () => {
                     description={details.text}
                     github={details.github}
                     external={details.external}
+                    wip={i === 0 ? 'hackersent' : null}
                   >
                     {i === 0 && (
                       <StyledImage
