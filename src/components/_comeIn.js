@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
 
-// styles
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -26,66 +27,65 @@ const StyledText = styled(motion.h2)`
   font-weight: lighter;
 `;
 
-const ComeIn = () => {
+const Loader = ({ finishLoading }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [startAnim, setStartAnim] = useState(true);
-
-  const messages = [
-    'Tweaking the final animations',
-    'Having a bit of patience is key',
-    'Putting on the finishing touches',
-  ];
-  const message = messages[Math.floor(Math.random() * messages.length)];
+  const message = 'Putting on the finishing touches';
 
   useEffect(() => {
-    if (setStartAnim === true) {
-      document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-    }
     setTimeout(() => {
       setStartAnim(false);
       setIsVisible(false);
 
       setTimeout(() => {
-        document.getElementsByTagName('body')[0].style.overflow = 'auto';
-      }, 1300);
+        finishLoading();
+      }, 1450);
     }, 1500);
-  }, [setIsVisible, setStartAnim]);
+  }, [isVisible, startAnim, finishLoading]);
 
   return (
-    <AnimatePresence>
-      {startAnim && (
-        <StyledComeIn
-          initial={{ height: '100vh' }}
-          animate={{ height: '100vh' }}
-          exit={{ height: 0 }}
-          transition={{
-            ease: [1, 0, 0.265, 1],
-            delay: 0.5,
-            duration: 1,
-          }}
-        >
-          <CenteredContent>
-            {isVisible && (
-              <StyledText
-                initial={{ y: 26 * 2, opacity: 0 }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{ y: -26 * 2, opacity: 0 }}
-                transition={{
-                  ease: [0.6, 0.05, -0.01, 0.9],
-                  duration: 0.8,
-                }}
-              >
-                {message}
-              </StyledText>
-            )}
-          </CenteredContent>
-        </StyledComeIn>
-      )}
-    </AnimatePresence>
+    <div>
+      <Helmet bodyAttributes={{ class: `hidden` }} />
+
+      <AnimatePresence>
+        {startAnim && (
+          <StyledComeIn
+            initial={{ height: '100vh' }}
+            animate={{ height: '100vh' }}
+            exit={{ height: 0 }}
+            transition={{
+              ease: [1, 0, 0.265, 1],
+              delay: 0.5,
+              duration: 1,
+            }}
+          >
+            <CenteredContent>
+              {isVisible && (
+                <StyledText
+                  initial={{ y: 26 * 2, opacity: 0 }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                  }}
+                  exit={{ y: -26 * 2, opacity: 0 }}
+                  transition={{
+                    ease: [0.6, 0.05, -0.01, 0.9],
+                    duration: 0.8,
+                  }}
+                >
+                  {message}
+                </StyledText>
+              )}
+            </CenteredContent>
+          </StyledComeIn>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
-export default ComeIn;
+Loader.propTypes = {
+  finishLoading: PropTypes.func.isRequired,
+};
+
+export default Loader;

@@ -174,6 +174,13 @@ const Contact = () => {
                 >
                   {socialMedia[1].name}
                 </SocialLink>
+                <SocialLink
+                  href={socialMedia[3].url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                >
+                  {socialMedia[3].name}
+                </SocialLink>
               </Col>
               <Col>
                 <SocialLink

@@ -22,6 +22,10 @@ module.exports = {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/kyryloren',
     },
+    {
+      name: 'Dribbble',
+      url: 'https://dribbble.com/kyryloren',
+    },
   ],
   navLinks: [
     {

@@ -9,7 +9,7 @@ if (typeof window !== 'undefined') {
   setTimeout(() => {
     let Luxy = require('luxy.js');
     Luxy.init();
-  }, 1000);
+  }, 4000);
 }
 
 export const wrapPageElement = ({ element, props }) => {
