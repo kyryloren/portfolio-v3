@@ -7,7 +7,7 @@
   kyryloorlov.com - v3
 </h1>
 <p align="center">
-  The second version of my personal website, built with <a href="https://www.gatsbyjs.org" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com" target="_blank">Netlify</a>.
+  The third version of my personal website, built with <a href="https://www.gatsbyjs.org" target="_blank">Gatsby</a> and hosted with <a href="https://www.netlify.com" target="_blank">Netlify</a>.
 </p>
 <p align="center">
   Previous versions:
